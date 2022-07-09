@@ -83,7 +83,7 @@ callbacks = [
 # Compiling the model
 model.compile(optimizer = keras.optimizers.Adam(learning_rate=0.001),
               loss = 'binary_crossentropy',
-              metrics=['accuracy'])
+              metrics=[tf.keras.metrics.Precision(),tf.keras.metrics.Recall(),'accuracy'])
 
 #### TRainging the model
 history = model.fit(train_generator, 
