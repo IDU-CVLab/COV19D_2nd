@@ -1,7 +1,8 @@
 # COV19D_2nd
 [![DOI:10.48550/arXiv.2111.11191](http://img.shields.io/badge/DOI-10.1101/2021.01.08.425840-B31B1B.svg)](https://arxiv.org/abs/2207.00259)
 
-The project includes working on a chest CT-scan series of images to develop an automated algorithm for COVID-19 detection, via [ECCV 2022 Workshop: AI-enabled Medical Image Analysis – Digital Pathology & Radiology/COVID19 - 2nd COV19D Competition](https://mlearn.lincoln.ac.uk/eccv-2022-ai-mia/).
+The project includes working on a chest CT-scan series of images to develop an automated algorithm for COVID-19 detection, via [ECCV 2022 Workshop: AI-enabled Medical Image Analysis – Digital Pathology & Radiology/COVID19 - 2nd COV19D Competition](https://mlearn.lincoln.ac.uk/eccv-2022-ai-mia/). <br/>
+The method proposed is a transfer learning model (Xception model) with a modified output for taking the diagnosis decision of the slices. Hyparperameters tuning was also used.
 
 To replicate the codes, the following must be noted:
 1. To run the code properly you would need a training set of images and a validation set of images.
@@ -11,3 +12,14 @@ To replicate the codes, the following must be noted:
 - Numpy == 1.19.5
 - CV2 == 4.5.4
 - Tensorflow == 2.5.0
+
+
+## Citation
+● If you find the method useful this method, please considering citing: <br/>
+@article{morani2022covid,
+  title={Covid-19 Detection Using transfer Learning Approach from Computed Temography Images},
+  author={Morani, Kenan and Balikci, Muhammet Fatih and Altuntas, Tayfun Yigit and Unay, Devrim},
+  journal={arXiv preprint arXiv:2207.00259},
+  year={2022}
+}
+
