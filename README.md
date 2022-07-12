@@ -15,7 +15,7 @@ To replicate the codes, the following must be noted:
 
 
 ## Citation
-● If you find the method useful this method, please considering citing: <br/>
+● If you find the method useful, please considering citing: <br/>
 @article{morani2022covid, <br/>
   title={Covid-19 Detection Using transfer Learning Approach from Computed Temography Images}, <br/>
   author={Morani, Kenan and Balikci, Muhammet Fatih and Altuntas, Tayfun Yigit and Unay, Devrim}, <br/>
