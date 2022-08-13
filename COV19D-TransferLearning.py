@@ -52,8 +52,12 @@ val_generator = val_datagen.flow_from_directory(
 
 ### Using pretrained Xception model
 Model_Xcep = tf.keras.applications.Xception(include_top=False, weights='imagenet', input_shape=(SIZE, SIZE, 3))
+Model_VGG = tf.keras.applications.vgg16.VGG16(include_top=False, weights='imagenet', input_shape=(SIZE, SIZE, 3))
 
 for layer in Model_Xcep.layers:
+	layer.trainable = False
+    
+for layer in Model_VGG.layers:
 	layer.trainable = False
     
 Model_Xcep.summary()
@@ -68,6 +72,15 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dropout(0.2), 
     tf.keras.layers.Dense(1, activation='sigmoid')
 ])
+
+model = tf.keras.Sequential([
+    Model_VGG, 
+    tf.keras.layers.GlobalAveragePooling2D(), 
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.BatchNormalization(), 
+    tf.keras.layers.Dropout(0.2), 
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
     
     
 #model = tf.keras.models.load_model ("Modified_Xception1.h5")    
@@ -75,8 +88,8 @@ model.summary()
 
 # Adding callbacks
 callbacks = [
-    tf.keras.callbacks.ModelCheckpoint("Modified_Xception1.h5", save_best_only=True, verbose = 0),
-    tf.keras.callbacks.EarlyStopping(patience=3, monitor='val_accuracy', verbose=1),
+    tf.keras.callbacks.ModelCheckpoint("Modified_VGG1.h5", save_best_only=True, verbose = 0),
+    tf.keras.callbacks.EarlyStopping(patience=4, monitor='val_accuracy', verbose=1),
     tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=2, verbose=1)
 ]
 
@@ -87,11 +100,35 @@ model.compile(optimizer = keras.optimizers.Adam(learning_rate=0.001),
 
 #### TRainging the model
 history = model.fit(train_generator, 
-                    validation_data=val_generator, epochs=13, 
+                    validation_data=val_generator, epochs=15, 
                     callbacks=[callbacks])
 
-#model.save("/home/idu/Desktop/COV19D/saved-models/COV19D_2nd/Modified_Xception.h5")
+model.save("/home/idu/Desktop/COV19D/saved-models/COV19D_2nd/Modified_Xception.h5")
+model.save("/home/idu/Desktop/COV19D/saved-models/COV19D_2nd/Modified_VGG.h5")
 
+# ============ Load Checkpoint ============
+ model = keras.models.load_model("/home/idu/Modified_VGG1.h5")
+ # get weights
+ modelWeights = model.get_weights()
+ # get optimizer state as it was on last epoch
+ modelOptimizer = model.optimizer
+
+ # ============ Compile Model ============
+ # redefine architecture (newModel=models.Sequential(), etc.)
+ newModel= redefine_your_model_architecture()
+ #$ newModel= previous model architecture
+ # compile
+ newModel.compile(optimizer=modelOptimizer,
+                  loss = 'binary_crossentropy',
+                  metrics=[tf.keras.metrics.Precision(),tf.keras.metrics.Recall(),'accuracy'])
+ # set trained weights
+ newModel.set_weights(modelWeights)
+
+ # ============ Resume Training ============
+ history = newModel.fit(train_generator, 
+                        validation_data=val_generator, epochs=30, 
+                        callbacks=[callbacks])
+ 
 
 ######### Evaluation of the model on the train and validation sets
 
@@ -148,7 +185,7 @@ Macro_F1score
 ############################## Making Predictions at patient level on the test set
 
 ## Choosing the directory where the test/validation data is at
-folder_path = '/home/idu/Desktop/COV19D/test/'
+folder_path = '/home/idu/Desktop/COV19D/validation/non-covid'
 extensions0 = []
 extensions1 = []
 extensions2 = []
@@ -313,15 +350,6 @@ with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(covidd6)
 
-############## 0.4 Slice level class probability
-with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
- wr = csv.writer(f, delimiter="\n")
- wr.writerow(noncoviddddd)
-
-with open('/home/idu/Desktop/covid.csv', 'w') as f:
- wr = csv.writer(f, delimiter="\n")
- wr.writerow(coviddddd)
-
 ############## 0.9 Slice level class probability
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
@@ -341,6 +369,16 @@ with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr.writerow(covidd7)
  
  ### KENAN MORANI - THE END
+ 
+ 
+ ############## 0.4 Slice level class probability
+with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
+ wr = csv.writer(f, delimiter="\n")
+ wr.writerow(noncoviddddd)
+
+with open('/home/idu/Desktop/covid.csv', 'w') as f:
+ wr = csv.writer(f, delimiter="\n")
+ wr.writerow(coviddddd)
 
 
 
