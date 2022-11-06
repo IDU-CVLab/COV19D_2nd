@@ -23,4 +23,3 @@ To replicate the code, the following must be noted:
   journal={arXiv preprint arXiv:2207.00259}, <br/>
   year={2022} <br/>
 }
-
