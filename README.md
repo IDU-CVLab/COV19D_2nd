@@ -15,7 +15,7 @@ To replicate the code, the following must be noted:
 - Tensorflow == 2.5.0
 
 
-# Citation
+# Cite
 ● If you find the method useful, consider citing: <br/>
 @article{morani2022covid, <br/>
   title={Covid-19 Detection Using transfer Learning Approach from Computed Temography Images}, <br/>
@@ -24,5 +24,5 @@ To replicate the code, the following must be noted:
   year={2022} <br/>
 }
 
-# Colaboration
+# Collaboration
 * Please get in touch if you wish to collaborate or wish to request the pre-trained models.
