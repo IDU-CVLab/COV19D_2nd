@@ -9,7 +9,7 @@
 - CV2 == 4.5.4
 - Tensorflow == 2.5.0
 
-# Train the model
+# Train the Model
 * The method proposed is a transfer learning model (Xception model) with a modified output for taking the diagnosis decision of the slices. Hyparperameters tuning was also used. For full details, please check the attached paper.
 
 1. To run the code properly you would need a training set of images and a validation set of images.
