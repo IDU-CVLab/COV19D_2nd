@@ -12,8 +12,8 @@
 # Train the Model
 * The method proposed is a transfer learning model (Xception model) with a modified output for taking the diagnosis decision of the slices. Hyparperameters tuning was also used. For full details, please check the attached paper.
 
-1. To run the code properly you would need a training set of images and a validation set of images.
-2. The images must be put in the appropriate directories. With that, the directory of training and validation images included in the code should be changed to match the directory where your image datasets are located. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator <br /> 
+* To run the code properly you would need a training set of images and a validation set of images.
+* The images must be put in the appropriate directories. With that, the directory of training and validation images included in the code should be changed to match the directory where your image datasets are located. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator <br /> 
 
 # Cite
 ● If you find the method useful, consider citing: <br/>
