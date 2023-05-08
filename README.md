@@ -5,15 +5,14 @@
 * The method proposed is a transfer learning model (Xception model) with a modified output for taking the diagnosis decision of the slices. Hyparperameters tuning was also used.
 * The team (IDU-CVLab) is on the leaderboard [here](https://cpb-eu-w2.wpmucdn.com/blogs.lincoln.ac.uk/dist/c/6133/files/2022/07/mia_eccv_2022_leaderboard.pdf).
 
-To replicate the code, the following must be noted:
-1. To run the code properly you would need a training set of images and a validation set of images.
-2. The images must be put in the appropriate directories. With that, the directory of training and validation images included in the code should be changed to match the directory where your image datasets are located. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator <br /> 
-
 # Dependencies
 - Numpy == 1.19.5
 - CV2 == 4.5.4
 - Tensorflow == 2.5.0
 
+# Train the model
+1. To run the code properly you would need a training set of images and a validation set of images.
+2. The images must be put in the appropriate directories. With that, the directory of training and validation images included in the code should be changed to match the directory where your image datasets are located. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator <br /> 
 
 # Cite
 ● If you find the method useful, consider citing: <br/>
