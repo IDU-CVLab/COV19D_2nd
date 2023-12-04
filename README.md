@@ -25,5 +25,13 @@
   year={2022} <br/>
 }
 
-# Collaboration
-* Please get in touch if you wish to collaborate or wish to request the pre-trained models.
+@article{IJAIN1432|to_array:0,  
+	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
+	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
+	journal = {International Journal of Advances in Intelligent Informatics},
+	volume = {9},  
+	number = {3},  
+	year = {2023},  
+	issn = {2548-3161},	pages = {524--536},	doi = {10.26555/ijain.v9i3.1432},  
+	url = {http://ijain.org/index.php/IJAIN/article/view/1432}  
+}
