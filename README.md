@@ -18,13 +18,6 @@
 
 # Cite
 ● If you find the method useful, consider citing: <br/>
-@article{morani2022covid, <br/>
-  title={Covid-19 Detection Using transfer Learning Approach from Computed Temography Images}, <br/>
-  author={Morani, Kenan and Balikci, Muhammet Fatih and Altuntas, Tayfun Yigit and Unay, Devrim}, <br/>
-  journal={arXiv preprint arXiv:2207.00259}, <br/>
-  year={2022} <br/>
-}
-
 @article{IJAIN1432|to_array:0,  
 	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
 	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
