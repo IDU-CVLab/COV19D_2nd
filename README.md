@@ -13,7 +13,7 @@
 This method can be applied in two different ways; With images processing and without (using the two different codes in the repository):  
 **With images processing (Optional).** First, ppermost and lower most slcies of each CT scans were removed with 60% of each CT scan slcies is kept. Seond, Slices of the CT scan were manually cropped to keep the Region of Interste (ROI), which is the two lung areas.  
 **Trnasfer Learning Based Classifier.** To take the diagnostic desicions at slices level, a transfer learning model (Xception model) with a modified output was deployed.  
-* Please note that this is a binary classiifcaiton task for COVID-19 detection and diagnosis. If you want to replicate the code for multi class classificaiotn tasks, you need to adjust the output of the classifier as required for your task.  
+* Please note that this is a binary classiifcaiton task for COVID-19 detection and diagnosis. If you want to replicate the code for a multi-class classificaiotn task, you need to adjust the output of the classifier as required for your task.  
 * For full details, please check the attached papers.  
 
 * To replicate the code properly, you would need a training set of images and a validation set of images.
