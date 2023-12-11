@@ -12,13 +12,11 @@
 # Methodology
 This method can be applied in two different ways; With images processing and without (using the two different codes in the repository):  
 **With images processing (Optional).** First, ppermost and lower most slcies of each CT scans were removed with 60% of each CT scan slcies is kept. Seond, Slices of the CT scan were manually cropped to keep the Region of Interste (ROI), which is the two lung areas.  
-**Trnasfer Learning Based Classifier.** To take the diagnostic desicions at slices level, a transfer learning model (Xception model) with a modified output was deployed.  
-* Please note that this is a binary classiifcaiton task for COVID-19 detection and diagnosis. If you want to replicate the code for a multi-class classificaiotn task, you need to adjust the output of the classifier as required for your task.  
-* For full details, please check the attached papers.  
-
+**Trnasfer Learning Based Classifier.** To take the diagnostic desicions at slices level, a transfer learning model (Xception model) with a modified output was deployed.    
 * To replicate the code properly, you would need a training set of images and a validation set of images.
 * The images must be put in the appropriate directories. With that, the directory of training and validation images included in the code should be changed to match the directory where your image datasets are located. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator
-* Please note: this is a binary classification task. To replicate the method on multiple classes, you need to modify the model's output layer to suit your task. 
+* Please note: this is a binary classification task. To replicate the method on multiple classes, you need to modify the model's output layer to suit your task.
+* For full details, please check the attached papers. 
 
 # Cite
 ● If you find the method useful, consider citing: <br/>
