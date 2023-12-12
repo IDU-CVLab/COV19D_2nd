@@ -5,20 +5,23 @@ Created on Sat Aug 28 15:50:19 2021
 
 @author: idu
 """
-######################## Images Processing #######################
+#######################################################################################
+######################## Images Processing ############################################
 #######################################################################################
 
 
 ### Slices Deletion
+#########################
 import os
 import cv2
 import re
 
-# Define path of images to be processed
+# Define path of images to be processed [COV19-CT-DB]
 train_dir = '/home/idu/Desktop/COV19D/train-processed/covid/'
 val_dir = '/home/idu/Desktop/COV19D/val-processed/non-covid/'
+test_dir = '/home/idu/Desktop/COV19D/test/' ## ECCV COV19-CT-DB
 
-main_dir = val_dir
+main_dir = test_dir ## Change this directory as needed to do slices deletion in
 
 # Define the percentage of images to delete
 percentage_to_delete = 40  # Adjust this value as needed
@@ -33,7 +36,7 @@ def extract_image_number(filename):
     match = re.match(r"(\d+).jpg", filename)
     if match:
         return int(match.group(1))
-    return None
+    return float('inf')  # Use a large value for files that don't match the pattern
 
 # Process each subfolder in the main directory
 
@@ -43,8 +46,8 @@ for subfolder in os.listdir(main_dir):
     if os.path.isdir(subfolder_path):
         # List all files in the subfolder
         files = os.listdir(subfolder_path)
-        files.sort(key=lambda x: extract_image_number(x))  # Sort files by image number
-        
+        files.sort(key=lambda x: extract_image_number(x))  # Sort files by image number with handling None
+
         total_count = len(files)
         
         if total_count > 1:
@@ -60,22 +63,32 @@ for subfolder in os.listdir(main_dir):
                 # Delete images at the beginning and end
                 file_to_delete_first = os.path.join(subfolder_path, files[i])
                 file_to_delete_last = os.path.join(subfolder_path, files[-(i + 1)])
-                print(f"Deleting image: {file_to_delete_first}")
-                print(f"Deleting image: {file_to_delete_last}")
-                os.remove(file_to_delete_first)
-                os.remove(file_to_delete_last)
+                
+                try:
+                    print(f"Deleting image: {file_to_delete_first}")
+                    os.remove(file_to_delete_first)
+                except FileNotFoundError:
+                    print(f"File not found: {file_to_delete_first}")
+
+                try:
+                    print(f"Deleting image: {file_to_delete_last}")
+                    os.remove(file_to_delete_last)
+                except FileNotFoundError:
+                    print(f"File not found: {file_to_delete_last}")
             
             # Print the list of files after deletion
-            files_after_deletion = os.listdir(subfolder_path)
-            print("Files after deletion:", files_after_deletion)
+            #files_after_deletion = os.listdir(subfolder_path)
+            #print("Files after deletion:", files_after_deletion)
 
 print("Deletion process completed.")
 
 
+
 ### Slices Cropping
+###################
 
 #path for images to be processed
-folder_path = val_dir
+folder_path = test_dir ## Change this to the directory to do the slices cropping in
 
 # Specify the new size and cropping position
 new_height = 227
@@ -111,10 +124,10 @@ for sub_folder in os.listdir(folder_path):
 
 print('finished')
 
+####################################################################################
+######################## Transfer Learning Models for classification################
+####################################################################################
 
-######################## Transfer Learning Models for classification########################
-#####################################################################################
-#######################################################################################3
 import os, glob
 import numpy as np
 import matplotlib.pyplot as plt
@@ -132,7 +145,7 @@ from tensorflow.keras.applications.resnet50 import ResNet50
 from PIL import Image
 from termcolor import colored
 
-##########################Using image datagenerator for Generating data with rescaling and binary labels from the images (rgb images)
+#Using image datagenerator for Generating data with rescaling and binary labels from the images (rgb images)
 batch_size = 32
 SIZE = 224  ## Resizing images to 224x224
 
@@ -155,9 +168,6 @@ val_generator = val_datagen.flow_from_directory(
         classes = ['covid','non-covid'],
         color_mode='rgb',
         class_mode='binary')
-
-##########################################################################################################3Cropping
-###################################### Transfer Learning Models####################################333
 
 ### Using pretrained Xception model
 Model_Xcep = tf.keras.applications.Xception(include_top=False, weights='imagenet', input_shape=(SIZE, SIZE, 3))
@@ -216,7 +226,7 @@ model.save("/home/idu/Desktop/COV19D/saved-models/COV19D_2nd/Modified_Xception.h
 model.save("/home/idu/Desktop/COV19D/saved-models/COV19D_2nd/Modified_VGG.h5")
 
 # ============ Load Checkpoint ============
- model = keras.models.load_model("/home/idu/Modified_VGG1.h5")
+ model = keras.models.load_model("/home/idu/Desktop/COV19D/saved-models/Transfer Learning/imageprocessed-Xception.h5")
  # get weights
  modelWeights = model.get_weights()
  # get optimizer state as it was on last epoch
@@ -233,13 +243,13 @@ model.save("/home/idu/Desktop/COV19D/saved-models/COV19D_2nd/Modified_VGG.h5")
  # set trained weights
  newModel.set_weights(modelWeights)
 
- # ============ Resume Training ============
+ # Resume Training if interrupted
  history = newModel.fit(train_generator, 
                         validation_data=val_generator, epochs=30, 
                         callbacks=[callbacks])
  
 
-######### Evaluation of the model on the train and validation sets
+#Evaluation of the model on the train and validation sets
 
 ## Accuracy & Loss
 plt.plot(history.history['accuracy'])
@@ -286,15 +296,12 @@ plt.show()
 Macro_F1score = (2*avg_precision*avg_recall)/ (avg_precision + avg_recall)
 Macro_F1score
 
-###############
-#^^^^^^^^^^^^^^^^^^ Testing the model on the Test Set for COV19-CT-DB 2nd Chellenge
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-####^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-############################## Making Predictions at patient level on the test set
+#Making predictions on the test set of unseen images; COV19-CT-DB, ECCV dataset release
 
 ## Choosing the directory where the test/validation data is at
-folder_path = '/home/idu/Desktop/COV19D/validation/non-covid'
+folder_path = '/home/idu/Desktop/COV19D/test/' # Change as needed
+
 extensions0 = []
 extensions1 = []
 extensions2 = []
@@ -446,9 +453,7 @@ print(len(covidd7+noncovidd7))
 print(len(covidd8+noncovidd8))
 
 
-### Saving to csv files format
-############## Using Majority Votingat the slice level
-########### 0.5 slice level class probability 
+### Saving to csv files format Using Majority Votingat the slice level 0.5 slice level class probability 
 import csv
 
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
@@ -459,7 +464,7 @@ with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(covidd6)
 
-############## 0.9 Slice level class probability
+## Using 0.9 Slice level class probability
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(noncoviddd)
@@ -468,7 +473,7 @@ with open('/home/idu/Desktop/ncovid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(coviddd)
 
-############ 0.15 Slice level class probability
+## Using 0.15 Slice level class probability
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(noncovidd7)
@@ -477,10 +482,7 @@ with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(covidd7)
  
- ### KENAN MORANI - THE END
- 
- 
- ############## 0.4 Slice level class probability
+ ## Using 0.4 Slice level class probability
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(noncoviddddd)
@@ -488,6 +490,8 @@ with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
 with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(coviddddd)
+ 
+### By KENAN MORANI
 
 
 
