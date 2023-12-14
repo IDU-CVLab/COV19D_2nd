@@ -21,7 +21,7 @@ This method can be applied in two different ways; With images processing and wit
 
 # Cite
 If you find the method useful, consider citing: <br/>
-* @article{IJAIN1432|to_array:0,  
+> @article{IJAIN1432|to_array:0,  
 	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
 	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
 	journal = {International Journal of Advances in Intelligent Informatics},
@@ -32,7 +32,7 @@ If you find the method useful, consider citing: <br/>
 	url = {http://ijain.org/index.php/IJAIN/article/view/1432}  
 }
 
-* @misc{morani2023covid19,  
+> @misc{morani2023covid19,  
       title={COVID-19 Detection Using Slices Processing Techniques and a Modified Xception Classifier from Computed Tomography Images},   
       author={Kenan Morani},  
       year={2023},  
