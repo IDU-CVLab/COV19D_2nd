@@ -32,11 +32,11 @@ If you find the method useful, consider citing: <br/>
 	url = {http://ijain.org/index.php/IJAIN/article/view/1432}  
 }
 
-*@misc{morani2023covid19,
-      title={COVID-19 Detection Using Slices Processing Techniques and a Modified Xception Classifier from Computed Tomography Images}, 
-      author={Kenan Morani},
-      year={2023},
-      eprint={2312.07580},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV}
+*@misc{morani2023covid19,  
+      title={COVID-19 Detection Using Slices Processing Techniques and a Modified Xception Classifier from Computed Tomography Images},   
+      author={Kenan Morani},  
+      year={2023},  
+      eprint={2312.07580},  
+      archivePrefix={arXiv},  
+      primaryClass={eess.IV}  
 }
