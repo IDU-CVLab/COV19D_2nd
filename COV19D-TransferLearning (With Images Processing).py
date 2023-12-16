@@ -553,7 +553,7 @@ with open(csv_file_path, 'w', newline='') as csv_file:
         writer.writerow({'Number of Misclassified Slices': row[0], 'Number of All Slices': row[1]})
         
 # Convert the CSV file to Excel
-excel_file_path = '//home/idu/Desktop/counts_data.xlsx'  # Change the path as needed
+excel_file_path = '/home/idu/Desktop/counts_data.xlsx'  # Change the path as needed
 df = pd.read_csv(csv_file_path)
 df.to_excel(excel_file_path, index=False)
 
