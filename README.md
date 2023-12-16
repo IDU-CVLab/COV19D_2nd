@@ -12,7 +12,7 @@ AND
 
 # Methodology
 This method can be applied in two different ways; With images processing and without (using the two different codes in the repository):  
-**With images processing (Optional).** First, ppermost and lower most slcies of each CT scans were removed with 60% of each CT scan slcies is kept. Seond, Slices of the CT scan were manually cropped to keep the Region of Interste (ROI), which is the two lung areas.  
+**With images processing (Optional).** Upermost and lower most slcies of each CT scans were removed with 60% of each CT scan slcies is kept. Next, Slices of the CT scan were manually cropped to keep the Region of Interste (ROI), which is the two lung areas.  
 **Trnasfer Learning-Based Classifier.** To take the diagnostic desicions at slices level, a transfer learning model (Xception model) with a modified output was deployed.    
 * To replicate the code properly, you would need a training set of images and a validation set of images.
 * The images must be put in the appropriate directories. With that, the directory of training and validation images included in the code should be changed to match the directory where your image datasets are located. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator
