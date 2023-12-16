@@ -19,7 +19,7 @@ import re
 # Define path of images to be processed [COV19-CT-DB]
 train_dir = '/home/idu/Desktop/COV19D/train-processed/covid/'
 val_dir = '/home/idu/Desktop/COV19D/val-processed/non-covid/'
-test_dir = '/home/idu/Desktop/COV19D/test/' ## ECCV COV19-CT-DB
+test_dir = '/home/idu/Desktop/COV19D/ICASSP-test/11' ## ECCV COV19-CT-DB
 
 main_dir = test_dir ## Change this directory as needed to do slices deletion in
 
@@ -300,7 +300,7 @@ Macro_F1score
 #Making predictions on the test set of unseen images; COV19-CT-DB, ECCV dataset release
 
 ## Choosing the directory where the test/validation data is at
-folder_path = '/home/idu/Desktop/COV19D/test/' # Change as needed
+folder_path = '/home/idu/Desktop/COV19D/val-processed/covid' # Change as needed
 
 extensions0 = []
 extensions1 = []
@@ -340,7 +340,7 @@ for fldr in os.listdir(folder_path):
         c=img_to_array(c)
         c= np.expand_dims(c, axis=0)
         c /= 255.0
-        result = model.predict_proba(c) #Probability of 1 (non-covid)
+        result = model.predict(c) #Probability of 1 (non-covid)
         if result > 0.97:  # Class probability threshod is 0.97
            extensions1.append(results)
         else:
@@ -354,7 +354,7 @@ for fldr in os.listdir(folder_path):
         else:
            extensions4.append(results)
         if result > 0.40:   # Class probability threshod is 0.40
-           extensions7.append(results)
+           extensions7.append(file_path)
         else:
            extensions6.append(results)
         if result > 0.50:   # Class probability threshod is 0.50
@@ -430,27 +430,27 @@ for fldr in os.listdir(folder_path):
     extensions13=[]
 
 #Checking the results
-print(len(covidd))
-print(len(coviddd))
+#print(len(covidd))
+#print(len(coviddd))
 print(len(covidddd))
 print(len(coviddddd))
 print(len(covidd6))
 print(len(covidd7))
-print(len(covidd8))
-print(len(noncovidd))
-print(len(noncoviddd))
+#print(len(covidd8))
+#print(len(noncovidd))
+#print(len(noncoviddd))
 print(len(noncovidddd))
 print(len(noncoviddddd))
 print(len(noncovidd6))
 print(len(noncovidd7))
-print(len(noncovidd8))
-print(len(covidd+noncovidd))
-print(len(coviddd+noncoviddd))
+#print(len(noncovidd8))
+#print(len(covidd+noncovidd))
+#print(len(coviddd+noncoviddd))
 print(len(covidddd+noncovidddd))
 print(len(coviddddd+noncoviddddd))
 print(len(covidd6+noncovidd6))
 print(len(covidd7+noncovidd7))
-print(len(covidd8+noncovidd8))
+#print(len(covidd8+noncovidd8))
 
 
 ### Saving to csv files format Using Majority Votingat the slice level 0.5 slice level class probability 
@@ -458,11 +458,11 @@ import csv
 
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
- wr.writerow(noncovidd6)
+ wr.writerow(noncovidd7)
 
 with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
- wr.writerow(covidd6)
+ wr.writerow(covidd7)
 
 ## Using 0.9 Slice level class probability
 with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
@@ -490,7 +490,75 @@ with open('/home/idu/Desktop/noncovid.csv', 'w') as f:
 with open('/home/idu/Desktop/covid.csv', 'w') as f:
  wr = csv.writer(f, delimiter="\n")
  wr.writerow(coviddddd)
+
  
+## Statistical Analysis of Model Miscalssifications
+# Drectly Checking the Images
+file_path = '/home/idu/Desktop/COV19D/val-processed/covid/ct_scan168/177.jpg' # Change as neede
+
+c=load_img(file_path, color_mode='rgb', target_size=(224,224))       
+c=img_to_array(c)
+c= np.expand_dims(c, axis=0)
+c /= 255.0
+result = model.predict(c) 
+if result > 0.4: ## The class probaility threshold
+ print('non-covid')
+else:
+ print('covid')
+ 
+# Studing number of miscalssification in each slice
+import os
+import csv
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+import numpy as np
+import pandas as pd
+
+folder_path = '/home/idu/Desktop/COV19D/val-processed/covid'  # Change as needed
+All_slices = []
+slices_extensions = []
+
+# Create a list to store the counts
+counts_data = []
+
+# Assuming 'model' is defined before this code
+for fldr in os.listdir(folder_path):
+    if fldr.startswith("ct"):
+        sub_folder_path = os.path.join(folder_path, fldr)
+        for filee in os.listdir(sub_folder_path):
+            file_path = os.path.join(sub_folder_path, filee)
+            c = load_img(file_path, color_mode='rgb', target_size=(224, 224))
+            c = img_to_array(c)
+            c = np.expand_dims(c, axis=0)
+            c /= 255.0
+            result = model.predict(c)  # Probability of 1 (non-covid)
+
+            # Misclassification Case
+            if result > 0.40:
+                slices_extensions.append(file_path)
+            All_slices.append(file_path)
+
+        misclassified_slices_count = len(slices_extensions)
+        all_slices_count = len(All_slices)
+        counts_data.append((misclassified_slices_count, all_slices_count))
+
+        print(sub_folder_path, misclassified_slices_count, '/', all_slices_count)
+
+# Save counts_data to a CSV file
+csv_file_path = '/home/idu/Desktop/counts_data.csv'  # Change the path as needed
+with open(csv_file_path, 'w', newline='') as csv_file:
+    fieldnames = ['Number of Misclassified Slices', 'Number of All Slices']
+    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+    writer.writeheader()
+    for row in counts_data:
+        writer.writerow({'Number of Misclassified Slices': row[0], 'Number of All Slices': row[1]})
+        
+# Convert the CSV file to Excel
+excel_file_path = '//home/idu/Desktop/counts_data.xlsx'  # Change the path as needed
+df = pd.read_csv(csv_file_path)
+df.to_excel(excel_file_path, index=False)
+
+         
+         
 ### By KENAN MORANI
 
 
