@@ -20,7 +20,7 @@ This method can be applied in two different ways; With images processing and wit
 * For full details, please check the attached papers. 
 
 # Cite
-If you find the method useful, consider citing: <br/>
+If you find these methods useful, kindly consider citing: <br/>
 > @article{IJAIN1432|to_array:0,  
 	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
 	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
