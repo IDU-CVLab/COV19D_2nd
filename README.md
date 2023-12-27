@@ -41,4 +41,4 @@ If you find these methods useful, kindly consider citing: <br/>
       primaryClass={eess.IV}  
 }
 
-* Kindly inform the organization owner, if you wish to obtain the pretrained models in this study
+* Kindly inform the organization owner if you wish to obtain the pretrained models in this study
