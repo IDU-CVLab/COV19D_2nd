@@ -1,4 +1,4 @@
-[![DOI:10.1155/2024/9962839](http://img.shields.io/badge/DOI-10.1155/2024/9962839/21681163.2023.2219765-B31B1B.svg.svg)](https://doi.org/10.1155/2024/9962839)
+[![DOI:10.1155/2024/9962839](http://img.shields.io/badge/DOI-10.1155/2024/9962839/21681163.2023.2219765-B31B1B.svg)](https://doi.org/10.1155/2024/9962839)
 AND  
 [![DOI:10.26555/ijain.V9i3.1432.2023.2219765](http://img.shields.io/badge/DOI-10.26555/21681163.2023.2219765-B31B1B.svg)](https://doi.org/10.26555/ijain.v9i3.1432)  
 # Database
