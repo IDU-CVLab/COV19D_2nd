@@ -24,7 +24,8 @@ This method can be applied in two different ways; With images processing and wit
   
 # Cite
 If you find these methods useful, kindly consider citing the follwing two articles: <br/>
-> @article{IJAIN1432|to_array:0,  
+>First journal paper  
+        @article{IJAIN1432|to_array:0,  
 	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
 	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
 	journal = {International Journal of Advances in Intelligent Informatics},  
@@ -36,7 +37,8 @@ If you find these methods useful, kindly consider citing the follwing two articl
   
 AND  
   
-> author = {Kenan Morani, Esra Kaya Ayana, Dimitrios Kollias, Devrim Unay} <br/>
+>Second journal paper  
+  author = {Kenan Morani, Esra Kaya Ayana, Dimitrios Kollias, Devrim Unay} <br/>
   title = {COVID-19 Detection from Computed Tomography Images Using Slice Processing Techniques and a Modified Xception Classifier}, <br/>
   journal = {International Journal of Biomedical Imaging} <br/>
   volume = {2024} <br/>
