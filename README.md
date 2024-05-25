@@ -35,13 +35,13 @@ If you find these methods useful, kindly consider citing the follwing two articl
   
 AND  
 
-{
-> author = {Kenan Morani, Esra Kaya Ayana, Dimitrios Kollias, Devrim Unay}
-  title = {COVID-19 Detection from Computed Tomography Images Using Slice Processing Techniques and a Modified Xception Classifier},
-  journal = {International Journal of Biomedical Imaging}
-  volume = {2024}
-  article ID = {9962839}
-  pages = {9 pages}
-  year = {2024}
-  url = {https://doi.org/10.1155/2024/9962839}
+{<br/>
+> author = {Kenan Morani, Esra Kaya Ayana, Dimitrios Kollias, Devrim Unay} <br/>
+  title = {COVID-19 Detection from Computed Tomography Images Using Slice Processing Techniques and a Modified Xception Classifier}, <br/>
+  journal = {International Journal of Biomedical Imaging} <br/>
+  volume = {2024} <br/>
+  article ID = {9962839} <br/>
+  pages = {9 pages} <br/>
+  year = {2024} <br/>
+  url = {https://doi.org/10.1155/2024/9962839} <br/>
 }
