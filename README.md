@@ -25,7 +25,7 @@ If you find these methods useful, kindly consider citing the follwing two articl
 > @article{IJAIN1432|to_array:0,  
 	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
 	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
-	journal = {International Journal of Advances in Intelligent Informatics},
+	journal = {International Journal of Advances in Intelligent Informatics},  
 	volume = {9},  
 	number = {3},  
 	year = {2023},  
