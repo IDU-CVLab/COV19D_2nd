@@ -14,9 +14,9 @@
 
 # Methodology
 This method can be applied in two different ways; With images processing and without (using the two different codes in the repository):  
-**With images processing (Optional).** Uppermost and lower most slcies of each CT scans were removed with 60% of the slices in each CT scan is kept. Next, Slices of the CT scan were manually cropped to better localize the Region of Interste (ROI), which is the two lung areas.  
+**With images processing (Optional).** Uppermost and lower most slcies of each CT scans were removed with 60% of the slices in each CT scan is kept. Next, Slices of the CT scan were manually cropped to better localize the Region of Interste (ROI), which is the two lung areas. For more theoratical details please refere to the second journal papers cited below.    
 **Trnasfer Learning-Based Classifier.** To take the diagnostic desicions at slices level, a transfer learning model (Xception model) with a modified output was deployed.    
-* To replicate the code properly, you would need a training set of images and a validation set of images.
+* To replicate the code properly, you would need a training set of images and a validation set of images. For more theoratical details please refere to the first journal papers cited below.    
 * The images must be put in the appropriate directories. With that, the directory of training and validation sets in the codes should be changed to match your directories. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator
 * Please note: this is a binary classification task. To replicate the method on multiple classes, you need to modify the model's output layer to suit your task.
 * For full details, please check the attached papers. 
