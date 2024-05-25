@@ -21,7 +21,7 @@ This method can be applied in two different ways; With images processing and wit
 * Kindly inform the organization owner if you wish to obtain the pretrained models in this study.
   
 # Cite
-If you find these methods useful, kindly consider citing: <br/>
+If you find these methods useful, kindly consider citing the follwing two articles: <br/>
 > @article{IJAIN1432|to_array:0,  
 	author = {Kenan Morani and Esra Kaya Ayana and Devrim Unay},  
 	title = {Covid-19 detection using modified xception transfer  learning approach from computed tomography images},  
@@ -32,12 +32,16 @@ If you find these methods useful, kindly consider citing: <br/>
 	issn = {2548-3161},	pages = {524--536},	doi = {10.26555/ijain.v9i3.1432},  
 	url = {http://ijain.org/index.php/IJAIN/article/view/1432}  
 }
+  
+AND  
 
-> @misc{morani2023covid19,  
-      title={COVID-19 Detection Using Slices Processing Techniques and a Modified Xception Classifier from Computed Tomography Images},   
-      author={Kenan Morani},  
-      year={2023},  
-      eprint={2312.07580},  
-      archivePrefix={arXiv},  
-      primaryClass={eess.IV}  
+{
+> author = {Kenan Morani, Esra Kaya Ayana, Dimitrios Kollias, Devrim Unay}
+  title = {COVID-19 Detection from Computed Tomography Images Using Slice Processing Techniques and a Modified Xception Classifier},
+  journal = {International Journal of Biomedical Imaging}
+  volume = {2024}
+  article ID = {9962839}
+  pages = {9 pages}
+  year = {2024}
+  url = {https://doi.org/10.1155/2024/9962839}
 }
