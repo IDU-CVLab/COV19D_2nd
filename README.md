@@ -31,11 +31,9 @@ If you find these methods useful, kindly consider citing the follwing two articl
 	year = {2023},  
 	issn = {2548-3161},	pages = {524--536},	doi = {10.26555/ijain.v9i3.1432},  
 	url = {http://ijain.org/index.php/IJAIN/article/view/1432}  
-}
   
 AND  
-
-{<br/>
+  
 > author = {Kenan Morani, Esra Kaya Ayana, Dimitrios Kollias, Devrim Unay} <br/>
   title = {COVID-19 Detection from Computed Tomography Images Using Slice Processing Techniques and a Modified Xception Classifier}, <br/>
   journal = {International Journal of Biomedical Imaging} <br/>
@@ -45,4 +43,4 @@ AND
   publisher = {Wiley} <br/>
   year = {2024} <br/>
   url = {https://doi.org/10.1155/2024/9962839} <br/>
-}
+
