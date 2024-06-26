@@ -26,8 +26,8 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array, save_im
 
 
 
-########################### Adding Noise to The Images [Gusiian Noise] ########################
-###########################^^############################^^^^##################################
+########################### Adding Noise to The Original Images in the validation set [Gusiian Noise] ########################
+###########################^^############################^^^^################################################^^^^^^^^^
    
 
 # Function to add Gaussian noise to an image
@@ -103,7 +103,7 @@ add_noise_and_save_images(non_covid_image_paths, output_path, validation_set_pat
 
 
 #######################################################################################
-######################## Images Processing ############################################
+######################## Processing Newly Created Noisey IMages ############################################
 #######################################################################################
 
 
@@ -180,8 +180,8 @@ print("Deletion process completed.")
 
 
 
-### Slices Cropping
-###################
+### Slices Cropping of the Newly Created Noisey Images
+####################^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #path for images to be processed
 folder_path = val_dir ## Change this to the directory to do the slices cropping in
