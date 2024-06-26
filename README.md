@@ -20,7 +20,8 @@ This method can be applied in two different ways; With images processing and wit
 * The images must be put in the appropriate directories. With that, the directory of training and validation sets in the codes should be changed to match your directories. This method is following the documentation for ‘imagedatagenerator’ and ‘flow_from_directory’ at https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator
 * Please note: this is a binary classification task. To replicate the method on multiple classes, you need to modify the model's output layer to suit your task.
 * For full details, please check the attached papers. 
-  
+**Checking Model's Robustness to Noisey Images.** This code will add Gussian noise to the images in the validation set and will run our pretrained and saved model on those newly created noisey images to check its performance against the noise added to the data. The python code is named "Noisey-Images-Image-Processing-Transfer-Learning.py".
+
 # Cite
 If you find these methods useful, kindly consider citing the follwing two articles: <br/>
 >First journal paper  
